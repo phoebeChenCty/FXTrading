@@ -105,11 +105,6 @@ def process_results(results_list, filepath):
     process_macro(results_list, get_fullname(filepath, "ma_res"))
     process_trades(results_list, get_fullname(filepath, "ma_trades"))
 
-    #rl = [x.result for x in results_list]
-    #df = pd.DataFrame.from_dict(rl)
-    #print(df)
-    #print(results_list[0].df_trades.head(2))
-
 
 def analyse_pair(instrument, granularity, ma_long, ma_short, filepath):
 
@@ -117,8 +112,6 @@ def analyse_pair(instrument, granularity, ma_long, ma_short, filepath):
     pair = instrument.name
 
     price_data = load_price_data(pair, granularity, ma_list)
-    #print(pair)
-    #print(price_data.head(3))
 
     results_list = []
 
