@@ -27,3 +27,5 @@ instrument.py
 instrument_collection.py
 
 plotting.py
+
+ma_cross.py
