@@ -91,7 +91,8 @@ def collect_data(pair, granularity, date_f, date_t, file_prefix, api: OandaApi):
 
 
 def run_collection(ic: InstrumentCollection, api: OandaApi):
-    our_curr = ["AUD", "CAD", "JPY", "USD", "EUR", "GBP", "NZD"]
+    # our_curr = ["AUD", "CAD", "JPY", "USD", "EUR", "GBP", "NZD"]
+    our_curr = ["EUR", "USD"]
     for p1 in our_curr:
         for p2 in our_curr:
             pair = f"{p1}_{p2}"
@@ -101,7 +102,7 @@ def run_collection(ic: InstrumentCollection, api: OandaApi):
                     collect_data(
                         pair,
                         granularity,
-                        "2016-01-07T00:00:00Z",
+                        "2021-01-07T00:00:00Z",
                         "2021-12-31T00:00:00Z",
                         "./data/",
                         api
