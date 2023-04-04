@@ -53,3 +53,31 @@ def MACD(df: pd.DataFrame, n_slow=26, n_fast=12, n_signal=9):
 
     return df
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

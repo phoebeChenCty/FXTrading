@@ -8,9 +8,9 @@ from api.oanda_api import OandaApi
 CANDLE_COUNT = 3000
 
 INCREMENTS = {
-    'M5': 5 * CANDLE_COUNT,
-    'H1': 60 * CANDLE_COUNT,
-    'H4': 240 * CANDLE_COUNT
+    'M5' : 5 * CANDLE_COUNT,
+    'H1' : 60 * CANDLE_COUNT,
+    'H4' : 240 * CANDLE_COUNT
 }
 
 
@@ -20,14 +20,14 @@ def save_file(final_df: pd.DataFrame, file_prefix, granularity, pair):
     final_df.drop_duplicates(subset=['time'], inplace=True)
     final_df.sort_values(by='time', inplace=True)
     final_df.reset_index(drop=True, inplace=True)
-    final_df.to_pickle(filename)
+    final_df.to_pickle(filename);
 
     s1 = f"*** {pair} {granularity} {final_df.time.min()} {final_df.time.max()}"
     print(f"*** {s1} --> {final_df.shape[0]} candles ***")
 
 
-def fetch_candles(pair, granularity, date_f: dt.datetime,
-                  date_t: dt.datetime, api: OandaApi):
+def fetch_candles(pair, granularity, date_f: dt.datetime, 
+                    date_t: dt.datetime, api: OandaApi ):
 
     attempts = 0
 
@@ -51,7 +51,7 @@ def fetch_candles(pair, granularity, date_f: dt.datetime,
         return None
 
 
-def collect_data(pair, granularity, date_f, date_t, file_prefix, api: OandaApi):
+def collect_data(pair, granularity, date_f, date_t, file_prefix, api: OandaApi ):
     
     time_step = INCREMENTS[granularity]
 
@@ -69,7 +69,7 @@ def collect_data(pair, granularity, date_f, date_t, file_prefix, api: OandaApi):
 
         candles = fetch_candles(
             pair,
-            granularity,
+            granularity, 
             from_date,
             to_date,
             api
@@ -80,9 +80,9 @@ def collect_data(pair, granularity, date_f, date_t, file_prefix, api: OandaApi):
             print(f"{pair} {granularity} {from_date} {to_date} --> {candles.shape[0]} candles loaded")
         else:
             print(f"{pair} {granularity} {from_date} {to_date} --> NO CANDLES")
-
+        
         from_date = to_date
-
+    
     if len(candle_dfs) > 0:
         final_df = pd.concat(candle_dfs)
         save_file(final_df, file_prefix, granularity, pair)
@@ -90,9 +90,9 @@ def collect_data(pair, granularity, date_f, date_t, file_prefix, api: OandaApi):
         print(f"{pair} {granularity} --> NO DATA SAVED!")
 
 
+
 def run_collection(ic: InstrumentCollection, api: OandaApi):
-    # our_curr = ["AUD", "CAD", "JPY", "USD", "EUR", "GBP", "NZD"]
-    our_curr = ["EUR", "USD"]
+    our_curr = ["AUD", "CAD", "JPY", "USD", "EUR", "GBP", "NZD"]
     for p1 in our_curr:
         for p2 in our_curr:
             pair = f"{p1}_{p2}"
@@ -102,8 +102,33 @@ def run_collection(ic: InstrumentCollection, api: OandaApi):
                     collect_data(
                         pair,
                         granularity,
-                        "2021-01-07T00:00:00Z",
+                        "2016-01-07T00:00:00Z",
                         "2021-12-31T00:00:00Z",
                         "./data/",
                         api
                     )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
