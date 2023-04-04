@@ -29,3 +29,19 @@ instrument_collection.py
 plotting.py
 
 ma_cross.py
+
+
+# backtesting
+load candle data
+
+calculate indicator, i.e. RSI, EMA
+check candle patterns
+
+create a slimer dataframe using only useful columns
+
+determine buy and sell signal
+determine take profit and stop loss
+
+plot candles and indicators and buy & sell signal to check if it looks correct
+
+simulate trading and gain
