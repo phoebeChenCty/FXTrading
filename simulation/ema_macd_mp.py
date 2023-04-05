@@ -136,14 +136,14 @@ def run_ema_macd(ic: InstrumentCollection):
             limit = todo
 
         for _ in range(limit):
-            processes.append(Process(target=run_process, args=(pairs[current],)))
+            processes.append(Process(target=run_process, args=(pairs[current],) ))
             current += 1
 
         for p in processes:
             p.start()
 
         for p in processes:
-            p.join() # wait all current process to finish
+            p.join()
 
     print("ALL DONE")
 

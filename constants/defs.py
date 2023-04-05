@@ -1,3 +1,10 @@
-API_KEY = "e1f7980a69a2fb459301e79beb73433b-257c9fa8b70bd768ec1edb63cae54240"
-ACCOUNT_ID = "101-001-25150540-001"
-OANDA_URL = "https://api-fxpractice.oanda.com/v3"
+SECURE_HEADER = {
+    "Authorization": f"Bearer {API_KEY}",
+    "Content-Type": "application/json"
+}
+
+SELL = -1
+BUY = 1
+NONE = 0
+
+MONGO_CONN_STR = "mongodb+srv://admin:xx@xx/myFirstDatabase?retryWrites=true&w=majority"

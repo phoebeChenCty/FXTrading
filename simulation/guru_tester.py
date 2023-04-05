@@ -34,7 +34,7 @@ def apply_signals(df, PROFIT_FACTOR, sig):
     df["TP"] = df.apply(apply_take_profit, axis=1, PROFIT_FACTOR=PROFIT_FACTOR)
     df["SL"] = df.apply(apply_stop_loss, axis=1)
 
-def create_signals(df, time_d=1): # align 1H candle to 5M
+def create_signals(df, time_d=1):
     df_signals = df[df.SIGNAL != NONE].copy() 
     df_signals['m5_start'] = [x + dt.timedelta(hours=time_d) for x in df_signals.time]
     df_signals.drop(['time', 'mid_o', 'mid_h', 'mid_l', 'bid_o', 'bid_h', 'bid_l',
@@ -144,4 +144,4 @@ class GuruTester:
             open_trades_m5 = [x for x in open_trades_m5 if x.running == True]
 
         self.df_results = pd.DataFrame.from_dict([vars(x) for x in closed_trades_m5]) 
-        print("Result:", self.df_results.result.sum())
+        #print("Result:", self.df_results.result.sum())

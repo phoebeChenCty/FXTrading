@@ -14,16 +14,9 @@ def bloomberg_com():
         "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0"
     }
 
-    # -- try this -- #
-    #resp = requests.get("https://www.bloomberg.com/fx-center", headers=headers)
-    #soup = BeautifulSoup(resp.content, 'html.parser')
-    # ---
+    resp = requests.get("https://www.bloomberg.com/fx-center", headers=headers)
 
-    # -- when it doesn't work, use the mockup -- #
-    with open("./scraping/mock_files/bloomberg.html", "r", encoding="utf-8") as f:
-        resp = f.read()
-        soup = BeautifulSoup(resp, 'html.parser')
-    # ---
+    soup = BeautifulSoup(resp.content, 'html.parser')
 
     all_links = []
 

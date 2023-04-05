@@ -65,21 +65,11 @@ def get_fx_calendar(from_date):
         "Cookie": f"calendar-importance=3; cal-custom-range={fr_d_str}|{to_d_str}; TEServer=TEIIS3; cal-timezone-offset=0;"
     }
 
-    # -- try this -- #
-    #resp = session.get("https://tradingeconomics.com/calendar", headers=headers)
-    #soup = BeautifulSoup(resp.content, 'html.parser')
-    # ---
-    
-    
-    # -- when it doesn't work, use the mockup -- #
-    with open("./scraping/mock_files/fx_calendar.html", "r", encoding="utf-8") as f:
-        resp = f.read()
-        soup = BeautifulSoup(resp, 'html.parser')
-    # ---
+    resp = session.get("https://tradingeconomics.com/calendar", headers=headers)
 
+    soup = BeautifulSoup(resp.content, 'html.parser')
 
     table = soup.select_one("table#calendar")
-
 
     last_header_date = None
     trs = {}
@@ -97,7 +87,7 @@ def get_fx_calendar(from_date):
     for item_date, table_rows in trs.items():
         final_data += get_data_dict(item_date, table_rows)
 
-
+    #[print(x) for x in final_data]
     return final_data
     
 
@@ -112,7 +102,6 @@ def fx_calendar():
         print(start)
         final_data += get_fx_calendar(start)
         start = start + dt.timedelta(days=7)
-        break
         time.sleep(1)
 
     print(pd.DataFrame.from_dict(final_data))
